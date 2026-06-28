@@ -1,38 +1,31 @@
 # 🤖 Termux-AI · Terminal AI Chat Client
 
-> A powerful, feature-rich terminal-based AI chat client powered by **OpenRouter API**. Works seamlessly on **Termux (Android)**, **Linux**, and **macOS**.
+A powerful, feature-rich terminal-based AI chat client powered by **OpenRouter API**. Works seamlessly on **Termux (Android)**, **Linux**, and **macOS**.
 
-<div align="center">
-
-![Version](https://img.shields.io/badge/version-3.0-blue?style=flat-square)
-![Language](https://img.shields.io/badge/language-Bash-green?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Android-informational?style=flat-square)
-
-</div>
+![Version](https://img.shields.io/badge/version-3.0-blue)
+![Language](https://img.shields.io/badge/language-Bash-green)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
 ---
 
 ## ✨ Features
 
-- **🎯 Multi-Model Support** — Access 50+ AI models (GPT-4o, Claude, Gemini, Llama, etc.)
+- **🎯 Multi-Model Support** — Access 50+ AI models (GPT-5.5, Claude, Gemini, Llama, etc.)
 - **📝 Markdown Rendering** — Beautiful syntax highlighting with `glow`, `bat`, or ANSI fallback
-- **💾 Chat Persistence** — Save and load conversations as JSON files for future reference
-- **🎨 Rich Terminal UI** — Colored output, spinners, and intelligently formatted responses
-- **🔐 Secure Configuration** — API keys stored with restricted permissions (mode 600)
-- **🔄 Auto-Dependency Detection** — Automatically detects and installs missing dependencies
-- **⚡ Network Resilient** — Built-in retry logic and graceful timeout handling
-- **🌍 Cross-Platform Support** — Termux, Ubuntu, Fedora, Arch, macOS, and more
+- **💾 Chat Persistence** — Save and load conversations as JSON files
+- **🎨 Rich Terminal UI** — Colored output, spinners, and formatted responses
+- **🔐 Secure Configuration** — API keys stored securely (mode 600)
+- **🔄 Auto-Dependency Install** — Detects and installs `curl` & `jq` automatically
+- **⚡ Network Resilient** — Built-in retry logic and timeout handling
+- **🌍 Cross-Platform** — Termux, Ubuntu, Fedora, Arch, macOS, and more
 
 ---
 
 ## 📋 Requirements
 
-| Requirement | Details |
-|---|---|
-| **curl** | HTTP client for API requests (auto-installed if missing) |
-| **jq** | JSON processor for response parsing (auto-installed if missing) |
-| **OpenRouter API Key** | Get a free API key at [openrouter.ai/keys](https://openrouter.ai/keys) |
+- **curl** — For HTTP requests (auto-installed)
+- **jq** — For JSON processing (auto-installed)
+- **OpenRouter API Key** — Get one free at https://openrouter.ai/keys
 
 ---
 
@@ -44,18 +37,18 @@ git clone https://github.com/Corrupted-Devil/Termux-AI
 cd Termux-AI
 ```
 
-### 2. Make the Script Executable
+### 2. Make it Executable
 ```bash
 chmod +x Termux-AI.sh
 ```
 
-### 3. Launch the Application
+### 3. Run the Script
 ```bash
 ./Termux-AI.sh
 ```
 
-### 4. Enter Your API Key
-On first run, you'll be prompted for your OpenRouter API key. It will be securely saved to `~/.openrouter_chat.conf` for future sessions.
+### 4. Provide Your API Key
+On first run, you'll be prompted to enter your OpenRouter API key. It will be saved to `~/.openrouter_chat.conf` for future sessions.
 
 ---
 
@@ -63,15 +56,15 @@ On first run, you'll be prompted for your OpenRouter API key. It will be securel
 
 | Command | Description |
 |---------|-------------|
-| `/help` | Display all available commands and shortcuts |
+| `/help` | Display all available commands |
 | `/clear` | Clear conversation history |
-| `/history` | Display full chat with markdown rendering |
+| `/history` | Show full chat with formatting |
 | `/model` | Switch to a different AI model |
 | `/key` | Update or change your API key |
 | `/md` | Toggle markdown rendering on/off |
-| `/save` | Save current chat to a JSON file |
-| `/load` | Load a previously saved conversation |
-| `/exit` or `/quit` | Exit the application |
+| `/save` | Save current chat to a file |
+| `/load` | Load a previously saved chat |
+| `/exit` / `/quit` | Exit the program |
 
 ---
 
@@ -82,65 +75,54 @@ On first run, you'll be prompted for your OpenRouter API key. It will be securel
 You › Tell me about machine learning
 ```
 
-### Switch models during chat
+### Switch models mid-conversation
 ```
 You › /model
-Current model: openai/gpt-4o-mini
+Current model: openai/gpt-5.5
 New model (blank = keep current): anthropic/claude-opus-4-5
 ```
 
-### Save your chat for later
+### Save your chat
 ```
 You › /save
-Filename (default: chat_20260628_120000.json): my_research.json
-✓ Chat saved to ~/.openrouter_chats/my_research.json
+Filename (default: chat_20260628_120000.json): my_conversation.json
 ```
 
 ### Toggle markdown rendering
 ```
 You › /md
-Markdown rendering disabled (plain text + typing effect).
+Markdown rendering OFF (raw text + typing effect).
 ```
 
 ---
 
-## 📂 Configuration & Storage
-
-Configuration and chat history are stored in your home directory:
+## 📂 File Structure
 
 ```
-~/.openrouter_chat.conf       # Main config (API key + default model)
-~/.openrouter_chats/          # Saved conversation directory
+~/.openrouter_chat.conf       # Configuration file (API key + default model)
+~/.openrouter_chats/          # Directory for saved conversations
   ├── chat_20260628_120000.json
-  ├── my_research.json
-  ├── coding_session.json
+  ├── my_conversation.json
   └── ...
-```
-
-**Config File Format** (`~/.openrouter_chat.conf`):
-```ini
-API_KEY=sk-or-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-DEFAULT_MODEL=openai/gpt-4o-mini
 ```
 
 ---
 
 ## 🎨 Supported AI Models
 
-Access 50+ models from leading providers via OpenRouter:
+Some popular models available through OpenRouter:
 
-| Provider | Available Models |
-|---|---|
-| **OpenAI** | `openai/gpt-4o-mini`, `openai/gpt-4-turbo`, `openai/gpt-3.5-turbo` |
-| **Anthropic** | `anthropic/claude-opus-4-5`, `anthropic/claude-3-sonnet`, `anthropic/claude-3-haiku` |
-| **Google** | `google/gemini-2.0-flash-001`, `google/gemini-pro` |
-| **Meta** | `meta-llama/llama-3.3-70b-instruct`, `meta-llama/llama-2-70b-chat` |
-| **Mistral** | `mistralai/mistral-large`, `mistralai/mistral-7b` |
-| **And many more!** | Visit [openrouter.ai/models](https://openrouter.ai/models) for the complete list |
+- **OpenAI** — `openai/gpt-5.5`, `openai/gpt-4o-mini`
+- **Anthropic** — `anthropic/claude-opus-4-5`
+- **Google** — `google/gemini-2.0-flash-001`
+- **Meta** — `meta-llama/llama-3.3-70b-instruct`
+- **And 50+ more!**
+
+For the complete list, visit: https://openrouter.ai/models
 
 ---
 
-## 🖥️ Platform-Specific Installation
+## 🖥️ Installation on Different Platforms
 
 ### Termux (Android)
 ```bash
@@ -151,9 +133,8 @@ chmod +x Termux-AI.sh
 ./Termux-AI.sh
 ```
 
-### Ubuntu / Debian
+### Ubuntu/Debian
 ```bash
-sudo apt-get update
 sudo apt-get install curl jq git
 git clone https://github.com/Corrupted-Devil/Termux-AI.git
 cd Termux-AI
@@ -170,7 +151,7 @@ chmod +x Termux-AI.sh
 ./Termux-AI.sh
 ```
 
-### Fedora / RHEL / CentOS
+### Fedora/RHEL
 ```bash
 sudo dnf install curl jq git
 git clone https://github.com/Corrupted-Devil/Termux-AI.git
@@ -179,196 +160,137 @@ chmod +x Termux-AI.sh
 ./Termux-AI.sh
 ```
 
-### Arch / Manjaro
-```bash
-sudo pacman -S curl jq git
-git clone https://github.com/Corrupted-Devil/Termux-AI.git
-cd Termux-AI
-chmod +x Termux-AI.sh
-./Termux-AI.sh
+---
+
+## 🔧 Configuration
+
+The script stores settings in `~/.openrouter_chat.conf`:
+
+```ini
+API_KEY=sk-or-xxxxxxxxxxxxxxxx
+DEFAULT_MODEL=openai/gpt-5.5
 ```
+
+Edit this file directly or use the `/key` and `/model` commands in the chat interface.
 
 ---
 
-## 🎨 UI Features & Formatting
+## 🎨 UI Features
 
 ### Syntax Highlighting
-Code blocks are automatically highlighted with language-specific colors:
+Code blocks are highlighted by language with color-coded output:
 - **Python** → Amber
-- **JavaScript** → Bright Yellow  
+- **JavaScript** → Bright Yellow
 - **TypeScript** → Sky Blue
-- **Bash/Shell** → Light Green
-- **JSON/XML** → Light Cyan
-- And many more languages!
+- **Bash** → Light Green
+- And many more!
 
 ### Markdown Support
-Beautifully rendered markdown including:
-- **Headers** (# ## ###) with visual underlines
-- **Bold** and *italic* text formatting
-- `Inline code` with distinct background styling
-- ```code blocks``` with full syntax highlighting
-- > Blockquotes with visual indicators
-- Ordered and unordered lists
-- Horizontal dividers and separators
+- **Headers** (# ## ###) with underlines
+- **Bold** and *italic* text
+- `Inline code` with dark background
+- ```code blocks``` with syntax highlighting
+- > Blockquotes with visual bars
+- Lists (ordered & unordered)
+- Horizontal rules
 
 ---
 
-## 🔧 Advanced Configuration
+## ⚙️ Advanced Options
 
-### Disable Auto-Dependency Installation
-Edit the `check_dependencies()` function in `Termux-AI.sh` if you prefer manual dependency management.
+### Disable Automatic Dependency Installation
+Modify the `check_dependencies()` function if you prefer manual installation.
 
-### Use Custom Models
-In the `/model` command, enter any model identifier from [openrouter.ai/models](https://openrouter.ai/models). The list updates regularly with new model releases.
+### Custom Models
+In the `/model` command, enter any model ID from https://openrouter.ai/models
 
 ### Typing Effect
-When markdown rendering is disabled (`/md`), responses display with a realistic typing effect for enhanced interactivity.
-
-### Environment Variables
-```bash
-# Override default model (optional)
-export TERMUX_AI_MODEL="anthropic/claude-opus-4-5"
-
-# Disable colored output
-export NO_COLOR=1
-```
+When markdown rendering is disabled (`/md`), responses display with a typing effect for a more interactive feel.
 
 ---
 
 ## 🐛 Troubleshooting
 
-### ❌ "Missing required deps: curl jq"
-The script will attempt automatic installation. If it fails:
-
+### "Missing required deps: curl jq"
+The script will attempt auto-install. If it fails, install manually:
 ```bash
 # Ubuntu/Debian
 sudo apt-get install curl jq
 
-# Fedora/RHEL
+# Fedora
 sudo dnf install curl jq
 
 # macOS
 brew install curl jq
-
-# Termux (Android)
-pkg install curl jq
 ```
 
-### ❌ "Invalid API key (401)"
-Your API key is invalid or expired. Get a new one at [openrouter.ai/keys](https://openrouter.ai/keys), then update it:
-```bash
-You › /key
-Enter new API key: sk-or-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-✓ API key updated successfully
-```
+### "Invalid API key (401)"
+Run `/key` to update your OpenRouter API key. Get one at https://openrouter.ai/keys
 
-### ❌ "Network error — check your connection"
-Ensure:
-- You have active internet connectivity
-- OpenRouter API is accessible (check [status page](https://openrouter.io/status))
-- Your firewall isn't blocking HTTPS traffic
+### "Network error — check your connection"
+Ensure you have internet connectivity and OpenRouter API is accessible.
 
-### ❌ "Empty response. Model may be unavailable"
-The selected model is currently unavailable. Try:
-```bash
-You › /model
-# Select a different model from the list
-```
-
-Or check the [OpenRouter status page](https://openrouter.io/status) for service updates.
-
-### ❌ "Permission denied"
-Ensure the script is executable:
-```bash
-chmod +x Termux-AI.sh
-```
+### "Empty response. Model may be unavailable"
+Try switching models with `/model` or check https://openrouter.ai/status
 
 ---
 
-## 📊 Chat History Format
+## 📝 Chat History Format
 
-Saved conversations are stored as human-readable JSON:
+Saved chats are stored as JSON:
 
 ```json
 {
   "metadata": {
-    "model": "openai/gpt-4o-mini",
+    "model": "openai/gpt-5.5",
     "saved_at": "2026-06-28T12:00:00Z",
-    "message_count": 5,
-    "total_tokens": 2048
+    "messages": 5
   },
   "messages": [
-    {
-      "role": "user",
-      "content": "Hello! How can you help me?"
-    },
-    {
-      "role": "assistant",
-      "content": "Hi there! I'm an AI assistant ready to help with a wide range of tasks..."
-    }
+    {"role": "user", "content": "Hello!"},
+    {"role": "assistant", "content": "Hi there! How can I help?"}
   ]
 }
 ```
-
-You can easily parse, share, or archive these files for future reference.
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please feel free to:
-
-- 🐛 **Report bugs** — Open an issue with detailed reproduction steps
-- 💡 **Suggest features** — Describe your use case and desired functionality
-- 🔄 **Submit pull requests** — Follow our code style and include tests
-- 📚 **Improve documentation** — Help us keep the README accurate and clear
-- 🔧 **Share improvements** — Any enhancement is appreciated!
-
-For major changes, please open an issue first to discuss the proposed modifications.
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest features
+- Submit pull requests
+- Share improvements
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for complete terms and conditions.
+This project is licensed under the **MIT License**. See `LICENSE` for details.
 
 ---
 
-## 🔗 Resources & Links
+## 🔗 Links
 
-- **OpenRouter Platform** — https://openrouter.ai
-- **Get Your API Key** — https://openrouter.ai/keys
-- **Available Models List** — https://openrouter.ai/models
-- **Service Status** — https://openrouter.io/status
-- **GitHub Repository** — https://github.com/Corrupted-Devil/Termux-AI
-- **Report Issues** — https://github.com/Corrupted-Devil/Termux-AI/issues
+- **OpenRouter**: https://openrouter.ai
+- **Get API Key**: https://openrouter.ai/keys
+- **Available Models**: https://openrouter.ai/models
+- **GitHub Repository**: https://github.com/Corrupted-Devil/Termux-AI
 
 ---
 
-## 💡 Tips & Best Practices
+## 💡 Tips & Tricks
 
-1. **🎯 Maintain Context** — Keep your conversation history for better context-aware AI responses
-2. **🔄 Experiment with Models** — Different models excel at different tasks (coding, writing, analysis, etc.)
-3. **💾 Archive Important Chats** — Use `/save` to preserve valuable conversations for future reference
-4. **⚡ Toggle Markdown** — Disable markdown (`/md`) for simpler, faster output when needed
-5. **📤 Share & Parse** — Saved chats are plain JSON—easily shareable, archivable, or scriptable
-6. **🔐 Rotate API Keys** — Regularly update your API key for enhanced security
-7. **🌐 Check Rate Limits** — Monitor your OpenRouter usage to avoid unexpected limits
+1. **Context Matters** — Keep your conversation history for better context-aware responses
+2. **Switch Models** — Different models excel at different tasks; experiment!
+3. **Save Interesting Chats** — Use `/save` to preserve valuable conversations
+4. **Markdown Toggle** — Disable markdown (`/md`) for a simpler, faster view
+5. **History Export** — Your saved chats are plain JSON—easily shareable or parseable
 
 ---
 
-## 🎬 Getting Started Video & Demos
+**Made with ❤️ for terminal enthusiasts everywhere** 
+**By Corrupted-Devil**
 
-For step-by-step guidance, check out the [Discussions](https://github.com/Corrupted-Devil/Termux-AI/discussions) section for tutorials and demo videos.
-
----
-
-<div align="center">
-
-**Made with ❤️ for terminal enthusiasts and AI developers everywhere**
-
-**⭐ If this project helps you, please consider giving it a star on GitHub!**
-
-**Happy chatting! 🚀**
-
-</div>
+Happy chatting! 🚀
